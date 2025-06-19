@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 // ------------------------------
 // 定数
 // ------------------------------
-const CONTRACT = '0x99bc40bebc8678672ec8419be1c56ba048dd11fd';
+const CONTRACT = '0x5be785cec89933d514db3d531ba5db2faf2504e0';
 const GATEWAY = 'https://gateway.lighthouse.storage/ipfs/';
 
 // ipfs:// URI → HTTP

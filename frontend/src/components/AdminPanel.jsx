@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 import OmikujiABI from '../abi/OmikujiNFT.json';
 import { toast } from 'react-toastify';
 
-const CONTRACT = '0x99bc40bebc8678672ec8419be1c56ba048dd11fd';
+const CONTRACT = '0x5be785cec89933d514db3d531ba5db2faf2504e0';
 
 export default function AdminPanel({ wallet }) {
     const [isOwner, setIsOwner] = useState(false);

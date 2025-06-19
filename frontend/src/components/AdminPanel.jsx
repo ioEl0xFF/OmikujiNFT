@@ -2,8 +2,9 @@ import { useEffect, useState, useCallback } from 'react';
 import { ethers } from 'ethers';
 import OmikujiABI from '../abi/OmikujiNFT.json';
 import { toast } from 'react-toastify';
+import { CONTRACT_ADDRESS } from '../constants';
 
-const CONTRACT = '0xb321508426133033848536E1B3233cC12295A152';
+const CONTRACT = CONTRACT_ADDRESS;
 
 export default function AdminPanel({ wallet }) {
     const [isOwner, setIsOwner] = useState(false);

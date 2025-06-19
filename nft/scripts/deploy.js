@@ -5,11 +5,11 @@ async function main() {
     // NFTのメタデータURIの配列
     // 各JSONファイルはIPFSにアップロード済みである必要があります
     const uris = [
-        'ipfs://bafybeid4ilndtbixf5clomkdfeecn7qryue2bbxchleomp3s5433llp67a/daikichi.json',
-        'ipfs://bafybeid4ilndtbixf5clomkdfeecn7qryue2bbxchleomp3s5433llp67a/kichi.json',
-        'ipfs://bafybeid4ilndtbixf5clomkdfeecn7qryue2bbxchleomp3s5433llp67a/chuukichi.json',
-        'ipfs://bafybeid4ilndtbixf5clomkdfeecn7qryue2bbxchleomp3s5433llp67a/syoukichi.json',
-        'ipfs://bafybeid4ilndtbixf5clomkdfeecn7qryue2bbxchleomp3s5433llp67a/kyou.json',
+        'ipfs://bafybeicyjt6hqpcjggrrhfudsnnhgajg6gpdsvp5lqvsbi3n3jy3yechbm/daikichi.json',
+        'ipfs://bafybeicyjt6hqpcjggrrhfudsnnhgajg6gpdsvp5lqvsbi3n3jy3yechbm/kichi.json',
+        'ipfs://bafybeicyjt6hqpcjggrrhfudsnnhgajg6gpdsvp5lqvsbi3n3jy3yechbm/chuukichi.json',
+        'ipfs://bafybeicyjt6hqpcjggrrhfudsnnhgajg6gpdsvp5lqvsbi3n3jy3yechbm/syoukichi.json',
+        'ipfs://bafybeicyjt6hqpcjggrrhfudsnnhgajg6gpdsvp5lqvsbi3n3jy3yechbm/kyou.json',
     ];
 
     // Chainlink VRFの設定

@@ -80,4 +80,19 @@ contract OmikujiNFT is ERC721URIStorage, VRFConsumerBaseV2Plus {
         // トークンカウンターを増やす
         tokenCounter++;
     }
+
+    // ---------------------------------------------------
+    // 管理者用: IPFS メタデータ URI を更新
+    // ---------------------------------------------------
+    function updateIpfsUri(uint256 index, string calldata newUri) external onlyOwner {
+        require(index < 5, "invalid index");
+        uris[index] = newUri;
+    }
+
+    /// @notice IPFS メタデータ URI を一括更新
+    function setIpfsUris(string[5] calldata newUris) external onlyOwner {
+        for (uint256 i = 0; i < 5; i++) {
+            uris[i] = newUris[i];
+        }
+    }
 }

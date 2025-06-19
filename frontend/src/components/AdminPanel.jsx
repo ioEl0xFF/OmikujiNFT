@@ -34,7 +34,7 @@ export default function AdminPanel({ wallet }) {
             }
             setUris(arr);
         } catch (e) {
-            console.error(e);
+            console.error('AdminPanel loadData error:', e);
             toast.error('データ取得に失敗しました');
         }
     }, [wallet]);
@@ -52,7 +52,7 @@ export default function AdminPanel({ wallet }) {
             await tx.wait();
             toast.success('URI 更新完了');
         } catch (e) {
-            console.error(e);
+            console.error('AdminPanel updateUris error:', e);
             toast.error('更新に失敗しました');
         }
     };

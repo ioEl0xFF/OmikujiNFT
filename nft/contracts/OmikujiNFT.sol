@@ -95,4 +95,13 @@ contract OmikujiNFT is ERC721URIStorage, VRFConsumerBaseV2Plus {
             uris[i] = newUris[i];
         }
     }
+
+    /// @notice ベース CID を指定して5つの URI を一括更新
+    function setIpfsCid(string calldata cid) external onlyOwner {
+        uris[0] = string(abi.encodePacked("ipfs://", cid, "/daikichi.json"));
+        uris[1] = string(abi.encodePacked("ipfs://", cid, "/kichi.json"));
+        uris[2] = string(abi.encodePacked("ipfs://", cid, "/chuukichi.json"));
+        uris[3] = string(abi.encodePacked("ipfs://", cid, "/syoukichi.json"));
+        uris[4] = string(abi.encodePacked("ipfs://", cid, "/kyou.json"));
+    }
 }

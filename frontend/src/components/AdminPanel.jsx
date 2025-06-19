@@ -7,7 +7,8 @@ const CONTRACT = '0xb321508426133033848536E1B3233cC12295A152';
 
 export default function AdminPanel({ wallet }) {
     const [isOwner, setIsOwner] = useState(false);
-    const [uris, setUris] = useState(Array(5).fill(''));
+    const [cid, setCid] = useState('');
+    const [uris, setUris] = useState([]);
 
     const getReadContract = async () => {
         const provider = new ethers.BrowserProvider(window.ethereum);
@@ -33,6 +34,10 @@ export default function AdminPanel({ wallet }) {
                 arr.push(await contract.uris(i));
             }
             setUris(arr);
+            if (arr[0]) {
+                const tmp = arr[0].replace('ipfs://', '').split('/')[0];
+                setCid(tmp);
+            }
         } catch (e) {
             console.error('AdminPanel loadData error:', e);
             toast.error('データ取得に失敗しました');
@@ -43,16 +48,17 @@ export default function AdminPanel({ wallet }) {
         loadData();
     }, [loadData]);
 
-    const updateUris = async () => {
+    const updateCid = async () => {
         if (!isOwner) return;
         try {
             const contract = await getWriteContract();
-            const tx = await contract.setIpfsUris(uris);
+            const tx = await contract.setIpfsCid(cid);
             toast.info('更新トランザクション送信');
             await tx.wait();
-            toast.success('URI 更新完了');
+            toast.success('CID 更新完了');
+            loadData();
         } catch (e) {
-            console.error('AdminPanel updateUris error:', e);
+            console.error('AdminPanel updateCid error:', e);
             toast.error('更新に失敗しました');
         }
     };
@@ -62,19 +68,13 @@ export default function AdminPanel({ wallet }) {
     return (
         <div className="space-y-2">
             <h2 className="text-xl font-bold">Admin Panel</h2>
-            {uris.map((u, i) => (
-                <input
-                    key={i}
-                    className="w-full text-black p-1"
-                    value={u}
-                    onChange={(e) => {
-                        const next = [...uris];
-                        next[i] = e.target.value;
-                        setUris(next);
-                    }}
-                />
-            ))}
-            <button className="btn" onClick={updateUris}>更新</button>
+            <input
+                className="w-full text-black p-1"
+                placeholder="CID"
+                value={cid}
+                onChange={(e) => setCid(e.target.value)}
+            />
+            <button className="btn" onClick={updateCid}>CID 更新</button>
         </div>
     );
 }

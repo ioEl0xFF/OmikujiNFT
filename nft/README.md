@@ -1,13 +1,29 @@
-# Sample Hardhat Project
+# OmikujiNFT コントラクト
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+このディレクトリは Hardhat プロジェクトです。NFT コントラクトの開発・テスト・デプロイに使用します。
 
-Try running some of the following tasks:
+## 使い方
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js
+1. 依存関係のインストール
+
+```bash
+npm install
 ```
+
+2. 環境変数の設定
+
+`.env.example` をコピーして `.env` を作成し、RPC の URL や秘密鍵を記入します。
+
+3. テスト実行
+
+```bash
+npm test
+```
+
+4. Amoy テストネットへデプロイ
+
+```bash
+npm run deploy
+```
+
+テストネットの設定値は `hardhat.config.js` を参照してください。

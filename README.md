@@ -62,3 +62,25 @@ OmikujiNFT/
 -   同じウォレットでの 1 日 1 回制限（`block.timestamp`ベース）
 -   トークンに運気スコアを持たせる
 -   管理者権限で IPFS の変更を可能にさせる
+
+## ⚙️ ローカル環境での実行
+
+以下の手順でコントラクトとフロントエンドを起動できます。
+
+### 1. コントラクト側
+
+```bash
+cd nft
+npm install
+cp .env.example .env # RPC URL や秘密鍵を設定
+npm test              # Hardhat テストを実行
+npm run deploy        # Amoy テストネットへデプロイ
+```
+
+### 2. フロントエンド側
+
+```bash
+cd frontend
+npm install
+npm run dev           # http://localhost:5173 で起動
+```

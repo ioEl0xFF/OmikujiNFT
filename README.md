@@ -13,7 +13,7 @@
 | フレームワーク       | Hardhat                                 |
 | フロントエンド       | React (Vite) / Ethers.js / Toastify     |
 | ストレージ           | IPFS（Lighthouse）                      |
-| デプロイ             | Polygon Mumbai Testnet                  |
+| デプロイ             | Polygon Amoy Testnet                   |
 
 ## 🧩 主な機能
 

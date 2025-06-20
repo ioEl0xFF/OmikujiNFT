@@ -1,3 +1,2 @@
-export const CONTRACT_ADDRESS = '0xb321508426133033848536E1B3233cC12295A152';
+export const CONTRACT_ADDRESS = '0xf473d52ac2998A8905ee37734037c300838133A0';
 export const IPFS_GATEWAY = 'https://gateway.lighthouse.storage/ipfs/';
-

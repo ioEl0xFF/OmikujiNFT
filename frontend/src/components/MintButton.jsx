@@ -10,12 +10,13 @@ import { useState, useCallback, useEffect } from 'react';
 import { ethers } from 'ethers';
 import OmikujiABI from '../abi/OmikujiNFT.json';
 import { toast } from 'react-toastify';
+import { CONTRACT_ADDRESS, IPFS_GATEWAY } from '../constants';
 
 // ------------------------------
 // 定数
 // ------------------------------
-const CONTRACT = '0x99bc40bebc8678672ec8419be1c56ba048dd11fd';
-const GATEWAY = 'https://gateway.lighthouse.storage/ipfs/';
+const CONTRACT = CONTRACT_ADDRESS;
+const GATEWAY = IPFS_GATEWAY;
 
 // ipfs:// URI → HTTP
 const ipfs2http = (uri) => uri.replace('ipfs://', GATEWAY);

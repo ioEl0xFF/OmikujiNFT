@@ -52,6 +52,13 @@ export default function AdminPanel({ wallet }) {
     const updateCid = async () => {
         if (!isOwner) return;
         try {
+            const provider = new ethers.BrowserProvider(window.ethereum);
+            const network = await provider.getNetwork();
+            const signer = await provider.getSigner();
+            const userAddr = await signer.getAddress();
+            const read = await getReadContract();
+            const owner = await read.owner();
+            console.log('CID update', { owner, user: userAddr, network });
             const contract = await getWriteContract();
             const tx = await contract.setIpfsCid(cid);
             toast.info('更新トランザクション送信');

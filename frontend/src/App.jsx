@@ -9,6 +9,7 @@
 import { useState, useEffect } from 'react';
 import MintButton from './components/MintButton';
 import History from './components/History';
+import AdminPanel from './components/AdminPanel';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -55,6 +56,9 @@ export default function App() {
 
             {/* NFT 履歴 */}
             <History wallet={wallet} refreshTrigger={refresh} />
+
+            {/* 管理者専用 UI */}
+            <AdminPanel wallet={wallet} />
 
             {/* トースト通知（画面右下） */}
             <ToastContainer position="bottom-right" theme="dark" />

@@ -37,7 +37,7 @@
 ## 🧾 ディレクトリ構成（抜粋）
 
 ```
-omikuji-project/
+OmikujiNFT/
 ├── frontend/
 │   ├── src/components/
 │   │   ├── MintButton.jsx

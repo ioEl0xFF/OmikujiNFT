@@ -15,6 +15,19 @@ import "./chainlink/vrf/dev/interfaces/IVRFCoordinatorV2Plus.sol";
 // ERC721URIStorageを継承してNFT機能を実装
 // VRFConsumerBaseV2Plusを継承して乱数生成機能を実装
 contract OmikujiNFT is ERC721URIStorage, VRFConsumerBaseV2Plus {
+    /// ---------------------------------------------------
+    ///  エラー定義
+    /// ---------------------------------------------------
+    error InvalidIndex(uint256 index); // インデックスが不正
+    error EmptyCid(); // CID が空
+    error EmptyUri(uint256 index); // URI が空
+
+    /// ---------------------------------------------------
+    ///  変更イベント
+    /// ---------------------------------------------------
+    event IpfsCidUpdated(string cid);
+    event IpfsUriUpdated(uint256 indexed index, string uri);
+    event IpfsUrisUpdated(string[5] uris);
     // Chainlink VRFの機能を使用するためのライブラリ
     using VRFV2PlusClient for VRFV2PlusClient.RandomWordsRequest;
 
@@ -85,23 +98,29 @@ contract OmikujiNFT is ERC721URIStorage, VRFConsumerBaseV2Plus {
     // 管理者用: IPFS メタデータ URI を更新
     // ---------------------------------------------------
     function updateIpfsUri(uint256 index, string calldata newUri) external onlyOwner {
-        require(index < 5, "invalid index");
+        if (index >= 5) revert InvalidIndex(index);
+        if (bytes(newUri).length == 0) revert EmptyUri(index);
         uris[index] = newUri;
+        emit IpfsUriUpdated(index, newUri);
     }
 
     /// @notice IPFS メタデータ URI を一括更新
     function setIpfsUris(string[5] calldata newUris) external onlyOwner {
         for (uint256 i = 0; i < 5; i++) {
+            if (bytes(newUris[i]).length == 0) revert EmptyUri(i);
             uris[i] = newUris[i];
         }
+        emit IpfsUrisUpdated(newUris);
     }
 
     /// @notice ベース CID を指定して5つの URI を一括更新
     function setIpfsCid(string calldata cid) external onlyOwner {
+        if (bytes(cid).length == 0) revert EmptyCid();
         uris[0] = string(abi.encodePacked("ipfs://", cid, "/daikichi.json"));
         uris[1] = string(abi.encodePacked("ipfs://", cid, "/kichi.json"));
         uris[2] = string(abi.encodePacked("ipfs://", cid, "/chuukichi.json"));
         uris[3] = string(abi.encodePacked("ipfs://", cid, "/syoukichi.json"));
         uris[4] = string(abi.encodePacked("ipfs://", cid, "/kyou.json"));
+        emit IpfsCidUpdated(cid);
     }
 }

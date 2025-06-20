@@ -83,6 +83,8 @@ export default function AdminPanel({ wallet }) {
                 message: e?.message,
                 code: e?.code,
                 data: e?.data,
+                reason: e?.reason,
+                stack: e?.stack,
             });
             toast.error('更新に失敗しました');
         }

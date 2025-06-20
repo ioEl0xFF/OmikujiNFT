@@ -28,6 +28,11 @@ export default function AdminPanel({ wallet }) {
             const contract = await getReadContract();
             const owner = (await contract.owner()).toLowerCase();
             const isOwnerAddr = owner === wallet.toLowerCase();
+            console.log('AdminPanel loadData', {
+                owner,
+                wallet,
+                isOwner: isOwnerAddr,
+            });
             setIsOwner(isOwnerAddr);
             if (!isOwnerAddr) return;
             const arr = [];
@@ -58,7 +63,15 @@ export default function AdminPanel({ wallet }) {
             const userAddr = await signer.getAddress();
             const read = await getReadContract();
             const owner = await read.owner();
-            console.log('CID update', { owner, user: userAddr, network });
+            console.log('CID update start', {
+                cid,
+                owner,
+                user: userAddr,
+                network: {
+                    chainId: network.chainId.toString(),
+                    name: network.name,
+                },
+            });
             const contract = await getWriteContract();
             const tx = await contract.setIpfsCid(cid);
             toast.info('更新トランザクション送信');
@@ -66,7 +79,11 @@ export default function AdminPanel({ wallet }) {
             toast.success('CID 更新完了');
             loadData();
         } catch (e) {
-            console.error('AdminPanel updateCid error:', e);
+            console.error('AdminPanel updateCid error:', {
+                message: e?.message,
+                code: e?.code,
+                data: e?.data,
+            });
             toast.error('更新に失敗しました');
         }
     };

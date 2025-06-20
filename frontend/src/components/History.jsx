@@ -63,7 +63,7 @@ export default function History({ wallet, refreshTrigger }) {
                 const latest = await provider.getBlockNumber();
                 const evts = await contract.queryFilter(
                     contract.filters.Transfer(null, wallet),
-                    latest - 10000, // 直近1万ブロックを検索
+                    Math.max(latest - 10000, 0), // 直近1万ブロックを検索。0 より下は指定しない
                     'latest'
                 );
                 tokenIds = evts.map((e) => BigInt(e.args.tokenId).toString());

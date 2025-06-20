@@ -19,7 +19,8 @@ export default function AdminPanel({ wallet }) {
     // 入力フォームに表示する CID
     const [cid, setCid] = useState('');
     // コントラクトに保存されている URI 一覧
-    const [uris, setUris] = useState([]);
+    // 複数のメタデータ URI を管理する（画面表示には未使用）
+    const [, setUris] = useState([]);
 
     // コントラクトを読み取り専用で取得
     const getReadContract = async () => {
